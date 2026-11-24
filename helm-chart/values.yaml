@@ -128,6 +128,11 @@ backend:
     ldapUrl: ldap://openldap.default.svc.cluster.local:389
     ldapUsername: cn=admin,dc=example,dc=org
     ldapPassword: ""
+    # Optional: inject LDAP_PASSWORD from an existing Secret via secretKeyRef.
+    # If name is empty, the plain ldapPassword value above is used.
+    existingSecret:
+      name: ""
+      key: ldap-password
 
   # Configure this parameters to deploy the component in specific K8s node(s).
   nodeSelector: {}

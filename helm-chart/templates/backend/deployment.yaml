@@ -81,5 +81,12 @@ spec:
             - name: LDAP_USERNAME
               value: {{ .ldapUsername | quote }}
             - name: LDAP_PASSWORD
+              {{- if .existingSecret.name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .existingSecret.name }}
+                  key: {{ .existingSecret.key }}
+              {{- else }}
               value: {{ .ldapPassword | quote }}
+              {{- end }}
           {{- end }}
